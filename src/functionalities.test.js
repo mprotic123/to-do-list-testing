@@ -56,3 +56,26 @@ describe('should remove all checked Items', () => {
     expect(result).toBeUndefined();
   });
 });
+
+test('remove all complete from localStorage', () => {
+  const arr = [
+    {
+      index: 1,
+      complete: false,
+      description: 'sleep',
+    },
+    {
+      index: 2,
+      complete: true,
+      description: 'sleep',
+    },
+    {
+      index: 3,
+      complete: true,
+      description: 'run',
+    }];
+  expect(Tasks.removeCheckedInLocal(arr)).toEqual([{ index: 1, complete: false, description: 'sleep' }]);
+});
+
+
+
