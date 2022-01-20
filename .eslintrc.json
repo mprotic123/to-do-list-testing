@@ -1,7 +1,5 @@
 {
-  rules: {
-        'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
- },
+  
   "env": {
     "browser": true,
     "es6": true,
