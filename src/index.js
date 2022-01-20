@@ -1,4 +1,3 @@
-import './style.css';
 import Tasks from './functionalities.js';
 import Task from './task.js';
 

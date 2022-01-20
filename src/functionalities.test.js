@@ -1,8 +1,6 @@
 import ListDom from './mocks/dummyAddItem.js';
 import trashDom from './mocks/dummyDeleteItem.js';
-import EditDom from './mocks/dummyEdit.js';
 import checkedDom from './mocks/dummyRemoveChecked.js';
-import UpdateDom from './mocks/dummyUpdateStatus.js';
 import Tasks from './functionalities.js';
 import MockStorage from './mocks/dummystorage.js';
 
@@ -47,7 +45,6 @@ describe('should remove Item', () => {
   });
 });
 
-
 describe('should remove all checked Items', () => {
   const checkedBox = checkedDom.window.document.getElementById('checkbox');
   const parent = checkedDom.window.document.getElementById('check-list');
@@ -76,6 +73,3 @@ test('remove all complete from localStorage', () => {
     }];
   expect(Tasks.removeCheckedInLocal(arr)).toEqual([{ index: 1, complete: false, description: 'sleep' }]);
 });
-
-
-
