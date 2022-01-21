@@ -1,6 +1,8 @@
 import ListDom from './mocks/dummyAddItem.js';
 import trashDom from './mocks/dummyDeleteItem.js';
+import EditDom from './mocks/dummyEdit.js';
 import checkedDom from './mocks/dummyRemoveChecked.js';
+import UpdateDom from './mocks/dummyUpdateStatus.js';
 import Tasks from './functionalities.js';
 import MockStorage from './mocks/dummystorage.js';
 
@@ -45,6 +47,55 @@ describe('should remove Item', () => {
   });
 });
 
+describe('should edit Item', () => {
+  test('should edit Item from local storage', () => {
+    const index = 0;
+    const storage = new MockStorage();
+    const data = [];
+    data.push(task);
+    storage.setItem('list', data);
+    const arr = storage.getItem('list');
+    const text = 'Hello world';
+    const result = Tasks.editeTextAreaDom(arr, index, text);
+    expect(result).toBe('Hello world');
+  });
+
+  test('should Edit Item in the browser', () => {
+    const inputValue = EditDom.window.document.getElementById('edit').value;
+    const index = 0;
+    const storage = new MockStorage();
+    const data = [];
+    data.push(task);
+    storage.setItem('list', data);
+    const arr = storage.getItem('list');
+    expect(Tasks.editeTextAreaDom(arr, index, inputValue)).toBe('hello');
+  });
+});
+
+test('should update complete status in local storage', () => {
+  const checkbox = UpdateDom.window.document.getElementById('0');
+  const storage = new MockStorage();
+  const data = [];
+  data.push(task);
+  storage.setItem('list', data);
+  const id = 0; checkbox.click((e) => {
+    Tasks.completeStatus(id, e);
+    expect(Tasks.localData()[id].complete).toBeTruthy();
+  });
+});
+test('should update complete status in local storage', () => {
+  const checkbox = UpdateDom.window.document.getElementById('0');
+  const storage = new MockStorage();
+  const data = [];
+  data.push(task);
+  storage.setItem('list', data);
+  const id = 0;
+  checkbox.click((e) => {
+    Tasks.completeStatus(id, e);
+    expect(Tasks.localData()[id].complete).toBeTruthy();
+  });
+});
+
 describe('should remove all checked Items', () => {
   const checkedBox = checkedDom.window.document.getElementById('checkbox');
   const parent = checkedDom.window.document.getElementById('check-list');
@@ -72,4 +123,28 @@ test('remove all complete from localStorage', () => {
       description: 'run',
     }];
   expect(Tasks.removeCheckedInLocal(arr)).toEqual([{ index: 1, complete: false, description: 'sleep' }]);
+});
+
+describe('should edit Item', () => {
+  test('should edit Item from local storage', () => {
+    const index = 0;
+    const storage = new MockStorage();
+    const data = [];
+    data.push(task);
+    storage.setItem('list', data);
+    const arr = storage.getItem('list');
+    const text = 'Hello world';
+    const result = Tasks.editeTextAreaDom(arr, index, text);
+    expect(result).toBe('Hello world');
+  });
+  test('should Edit Item in the browser', () => {
+    const inputValue = EditDom.window.document.getElementById('edit').value;
+    const index = 0;
+    const storage = new MockStorage();
+    const data = [];
+    data.push(task);
+    storage.setItem('list', data);
+    const arr = storage.getItem('list');
+    expect(Tasks.editeTextAreaDom(arr, index, inputValue)).toBe('hello');
+  });
 });
