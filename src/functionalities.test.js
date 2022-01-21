@@ -1,6 +1,8 @@
 import ListDom from './mocks/dummyAddItem.js';
 import trashDom from './mocks/dummyDeleteItem.js';
+import EditDom from './mocks/dummyEdit.js';
 import checkedDom from './mocks/dummyRemoveChecked.js';
+import UpdateDom from './mocks/dummyUpdateStatus.js';
 import Tasks from './functionalities.js';
 import MockStorage from './mocks/dummystorage.js';
 
