@@ -59,19 +59,31 @@ describe('should edit Item', () => {
     const result = Tasks.editeTextAreaDom(arr, index, text);
     expect(result).toBe('Hello world');
   });
-  test('should Edit Item in the browser', () => {
-    const inputValue = EditDom.window.document.getElementById('edit').value;
-    const index = 0;
-    const storage = new MockStorage();
-    const data = [];
-    data.push(task);
-    storage.setItem('list', data);
-    const arr = storage.getItem('list');
-    expect(Tasks.editeTextAreaDom(arr, index, inputValue)).toBe('hello');
+
+test('should Edit Item in the browser', () => {
+  const inputValue = EditDom.window.document.getElementById('edit').value;
+  const index = 0;
+  const storage = new MockStorage();
+  const data = [];
+  data.push(task);
+  storage.setItem('list', data);
+  const arr = storage.getItem('list');
+  expect(Tasks.editeTextAreaDom(arr, index, inputValue)).toBe('hello');
   });
 });
 
-test('should update complete status in local storage', () => {  const checkbox = UpdateDom.window.document.getElementById('0');  const storage = new MockStorage();  const data = [];  data.push(task);  storage.setItem('list', data);  const id = 0;  checkbox.click((e) => {    Tasks.completeStatus(id, e);    expect(Tasks.localData()[id].complete).toBeTruthy();  });});test('should update complete status in local storage', () => {
+test('should update complete status in local storage', () => {  
+  const checkbox = UpdateDom.window.document.getElementById('0');  
+  const storage = new MockStorage();  
+  const data = [];  
+  data.push(task);  
+  storage.setItem('list', data);  
+  const id = 0;  checkbox.click((e) => {    
+    Tasks.completeStatus(id, e);    
+    expect(Tasks.localData()[id].complete).toBeTruthy();  
+  });
+});
+test('should update complete status in local storage', () => {
   const checkbox = UpdateDom.window.document.getElementById('0');
   const storage = new MockStorage();
   const data = [];
